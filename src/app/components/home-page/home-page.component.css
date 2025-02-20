@@ -1,0 +1,30 @@
+/* Structure */
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2d545e;
+  height: 100vh;
+}
+div {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 80%;
+  margin-bottom: 10%;
+}
+table {
+  width: 100%;
+  flex-grow: 1;
+  flex-basis: 200;
+  box-shadow: 10px 10px #12343b;
+  background-color: #e1b382;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+  flex-grow: 1;
+  flex-basis: 200;
+}

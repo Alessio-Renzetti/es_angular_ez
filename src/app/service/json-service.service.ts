@@ -9,14 +9,14 @@ export class JsonServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getLibri(): libri<Observable>{
-    return this.http.get<libri>("http://localhost:3000/libri")
+  getLibri(): Observable<Libro[]>{
+    return this.http.get<Libro[]>("http://localhost:3000/libri")
   }
 }
-export interface libri{
+export interface Libro{
   titolo: string,
   autore: string,
   genere: string,
-  data_uscita: string,
+  data_pub: string,
   id: string
 }
