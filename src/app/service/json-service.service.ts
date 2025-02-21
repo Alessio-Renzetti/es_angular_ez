@@ -12,6 +12,9 @@ export class JsonServiceService {
   getLibri(): Observable<Libro[]>{
     return this.http.get<Libro[]>("http://localhost:3000/libri")
   }
+  postLibro(body :{}){
+    return this.http.post("http://localhost:3000/libri",body)
+  }
 }
 export interface Libro{
   titolo: string,

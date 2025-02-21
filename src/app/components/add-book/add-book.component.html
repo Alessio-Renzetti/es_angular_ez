@@ -1,1 +1,33 @@
-<p>add-book works!</p>
+<form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Titolo</mat-label>
+      <input matInput type="text" name="Titolo" formControlName="Titolo"/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Autore</mat-label>
+      <input matInput type="text" name="Autore" formControlName="Autore"/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Genere</mat-label>
+      <mat-select name="Genere" formControlName="Genere">
+        <mat-option value="distopico">Distopico</mat-option>
+        <mat-option value="storico">Storico</mat-option>
+        <mat-option value="narrativa">Narrativa</mat-option>
+        <mat-option value="romanzo">Romanzo</mat-option>
+        <mat-option value="fantasy">Fantasy</mat-option>
+        <mat-option value="horror">Horror</mat-option>
+        <mat-option value="giallo">Giallo</mat-option>
+        <mat-option value="science-fiction">Science-fiction</mat-option>
+        <mat-option value="commedia">Commedia</mat-option>
+        <mat-option value="biografia">Biografia</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Data d'uscita</mat-label>
+        <input matInput [matDatepicker]="dp3" [disabled]="true" name="Data" formControlName="Data">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
+        <mat-datepicker #dp3 [disabled]="false"></mat-datepicker>
+      </mat-form-field>
+    <button mat-raised-button type="submit" [disabled]="!addForm.valid">Invio</button>
+  </form>

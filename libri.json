@@ -4,31 +4,36 @@
       "titolo": "Il Nome della Rosa",
       "autore": "Umberto Eco",
       "genere": "Storico",
-      "data_pub": "1980-01-01"
+      "data_pub": "1980-01-01",
+      "id": "dc23"
     },
     {
       "titolo": "1984",
       "autore": "George Orwell",
       "genere": "Distopico",
-      "data_pub": "1949-06-08"
+      "data_pub": "1949-06-08",
+      "id": "d6a7"
     },
     {
       "titolo": "Orgoglio e Pregiudizio",
       "autore": "Jane Austen",
       "genere": "Romanzo",
-      "data_pub": "1813-01-28"
+      "data_pub": "1813-01-28",
+      "id": "6b2c"
     },
     {
       "titolo": "Il Signore degli Anelli",
       "autore": "J.R.R. Tolkien",
       "genere": "Fantasy",
-      "data_pub": "1954-07-29"
+      "data_pub": "1954-07-29",
+      "id": "a8b1"
     },
     {
       "titolo": "Il Piccolo Principe",
       "autore": "Antoine de Saint-Exupéry",
       "genere": "Narrativa",
-      "data_pub": "1943-04-06"
+      "data_pub": "1943-04-06",
+      "id": "0fb4"
     }
   ]
 }
