@@ -25,7 +25,6 @@ constructor(private jsonServ: JsonServiceService){
   ngOnInit(): void {
     this.jsonServ.getLibri().subscribe((data: Libro[]) =>{
       this.libro.data = data
-      console.log(data)
     })
   }
   applyFilter(event: Event) {
