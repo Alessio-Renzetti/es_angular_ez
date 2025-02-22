@@ -1,1 +1,55 @@
-<p>update-book works!</p>
+<style>
+    mat-dialog-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color:  #e1b382;
+    }
+</style>
+<h1 mat-dialog-title>Edit Book</h1>
+<div mat-dialog-content>
+  <form [formGroup]="editForm" (ngSubmit)="save()">
+    <mat-form-field>
+      <mat-label>Titolo</mat-label>
+      <input matInput type="text" name="titolo" formControlName="titolo" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Autore</mat-label>
+      <input matInput type="text" name="autore" formControlName="autore" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Genere</mat-label>
+      <mat-select name="genere" formControlName="genere">
+        <mat-option value="Distopico">Distopico</mat-option>
+        <mat-option value="Storico">Storico</mat-option>
+        <mat-option value="Narrativa">Narrativa</mat-option>
+        <mat-option value="Romanzo">Romanzo</mat-option>
+        <mat-option value="Fantasy">Fantasy</mat-option>
+        <mat-option value="Horror">Horror</mat-option>
+        <mat-option value="Giallo">Giallo</mat-option>
+        <mat-option value="Science-fiction">Science-fiction</mat-option>
+        <mat-option value="Commedia">Commedia</mat-option>
+        <mat-option value="Biografia">Biografia</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Data d'uscita</mat-label>
+      <input
+        matInput
+        [matDatepicker]="dp3"
+        name="data_pub"
+        formControlName="data_pub"
+      />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
+      <mat-datepicker #dp3></mat-datepicker>
+    </mat-form-field>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Cancel</button>
+      <button mat-button type="submit" [disabled]="!editForm.valid">
+        Save
+      </button>
+    </div>
+  </form>
+</div>

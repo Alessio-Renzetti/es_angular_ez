@@ -7,13 +7,21 @@ import { Observable } from 'rxjs';
 })
 export class JsonServiceService {
 
+  libroApI="http://localhost:3000/libri"
+
   constructor(private http: HttpClient) { }
 
   getLibri(): Observable<Libro[]>{
-    return this.http.get<Libro[]>("http://localhost:3000/libri")
+    return this.http.get<Libro[]>(`${this.libroApI}`)
   }
-  postLibro(body :{}){
-    return this.http.post("http://localhost:3000/libri",body)
+  postLibro(body :{}): Observable<Libro>{
+    return this.http.post<Libro>(`${this.libroApI}`,body)
+  }
+  putLibro(body : Libro): Observable<Libro>{
+    return this.http.put<Libro>(`${this.libroApI}/${body.id}`,body)
+  }
+  deleteLibro(idLibro :string): Observable<Libro>{
+    return this.http.delete<Libro>(`${this.libroApI}/${idLibro}`)
   }
 }
 export interface Libro{

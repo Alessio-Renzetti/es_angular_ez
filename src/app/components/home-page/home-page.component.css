@@ -28,3 +28,15 @@ table {
   flex-grow: 1;
   flex-basis: 200;
 }
+
+button{
+  color: #2d545e;
+  border-radius: 10px;
+  width: 35px;
+  border: none;
+  margin-right: 5%;
+}
+button:hover{
+  cursor: pointer;
+  background-color: lightgrey;
+}

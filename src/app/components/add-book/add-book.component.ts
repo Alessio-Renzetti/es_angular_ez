@@ -30,7 +30,6 @@ import { JsonServiceService } from '../../service/json-service.service';
 })
 export class AddBookComponent implements OnInit {
   addForm!: FormGroup;
-  dis= true
   constructor(private jsonSer : JsonServiceService) {}
   ngOnInit(): void {
     this.addForm = new FormGroup({
