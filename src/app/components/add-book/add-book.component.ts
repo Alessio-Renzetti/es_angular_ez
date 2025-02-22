@@ -30,22 +30,28 @@ import { JsonServiceService } from '../../service/json-service.service';
 })
 export class AddBookComponent implements OnInit {
   addForm!: FormGroup;
+  dis= true
   constructor(private jsonSer : JsonServiceService) {}
   ngOnInit(): void {
     this.addForm = new FormGroup({
-      Titolo: new FormControl(null, Validators.required),
-      Autore: new FormControl(null, Validators.required),
-      Genere: new FormControl(),
-      Data: new FormControl()
+      titolo: new FormControl(null, Validators.required),
+      autore: new FormControl(null, Validators.required),
+      genere: new FormControl(),
+      data_pub: new FormControl()
     })
   }
   onSubmit(){
-    // console.log(this.homeForm.value)
+    let formData = {...this.addForm.value };
+
+    if (formData.data_pub) {
+      formData.data_pub = new Date(formData.data_pub).toISOString().split("T")[0]; 
+    }
+
     this.jsonSer.postLibro(
-      this.addForm.value
+      formData
     ).subscribe(res => {
       console.log(res)
     })
-    
+    this.addForm.reset()
   }
 }
