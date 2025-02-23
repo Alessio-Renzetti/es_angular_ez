@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { JsonServiceService, Libro } from '../../service/json-service.service';
 import { UpdateBookComponent } from '../update-book/update-book.component';
+import { DeleteBookComponent } from '../delete-book/delete-book.component';
 
 @Component({
   selector: 'app-home-page',
@@ -19,16 +20,18 @@ export class HomePageComponent implements OnInit {
   displayedColumns: string[] = ['Titolo', 'Autore', 'Genere', 'Anno','Actions'];
   input: any;
   constructor(private jsonServ: JsonServiceService, public dialog: MatDialog) {}
-
+  // GET LIBRO
   ngOnInit(): void {
     this.jsonServ.getLibri().subscribe((data: Libro[]) => {
       this.libro.data = data;
     });
   }
+  // FILTER
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.libro.filter = filterValue.trim().toLowerCase();
   }
+  // EDIT
   openEditModal(spec: Libro): void {
     const dialogRef = this.dialog.open(UpdateBookComponent, {
       width: '350px',
@@ -56,15 +59,25 @@ export class HomePageComponent implements OnInit {
       }
     });
   }
+  // DELETE
   deleteBook(bookId: string): void {
-    // Chiamata al servizio per eliminare il libro dal backend
-    this.jsonServ.deleteLibro(bookId).subscribe(() => {
-      // Rimuovi il libro dalla lista dopo che l'eliminazione è andata a buon fine
-      const index = this.libro.data.findIndex(book => book.id === bookId);
-      if (index !== -1) {
-        this.libro.data.splice(index, 1); // Rimuovi l'elemento dalla lista
-        this.libro._updateChangeSubscription(); // Rinfresca la tabella
+    const dialogRef = this.dialog.open(DeleteBookComponent, {
+      width: '300px',
+      data: { bookId }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Se l'utente conferma, elimina il libro
+        this.jsonServ.deleteLibro(bookId).subscribe(() => {
+          const index = this.libro.data.findIndex(book => book.id === bookId);
+          if (index !== -1) {
+            this.libro.data.splice(index, 1); // Rimuovi il libro dalla lista
+            this.libro._updateChangeSubscription(); // Rinfresca la tabella
+          }
+        });
       }
     });
   }
+
 }
