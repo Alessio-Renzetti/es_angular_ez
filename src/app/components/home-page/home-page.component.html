@@ -6,7 +6,6 @@
     </mat-form-field>
 
     <table mat-table [dataSource]="libro" class="mat-elevation-z8">
-
       <ng-container matColumnDef="Titolo">
         <th mat-header-cell *matHeaderCellDef>Titolo</th>
         <td mat-cell *matCellDef="let element">{{ element.titolo }}</td>
@@ -28,7 +27,7 @@
       </ng-container>
 
       <ng-container matColumnDef="Actions">
-        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let element">
           <button mat-raised-button (click)="openEditModal(element)">
             <mat-icon>edit</mat-icon>

@@ -17,7 +17,14 @@ import { DeleteBookComponent } from '../delete-book/delete-book.component';
 })
 export class HomePageComponent implements OnInit {
   libro = new MatTableDataSource<Libro>([]);
-  displayedColumns: string[] = ['Titolo', 'Autore', 'Genere', 'Anno','Actions'];
+
+  displayedColumns: string[] = [
+    'Titolo',
+    'Autore',
+    'Genere',
+    'Anno',
+    'Actions',
+  ];
   input: any;
   constructor(private jsonServ: JsonServiceService, public dialog: MatDialog) {}
   // GET LIBRO
@@ -26,11 +33,13 @@ export class HomePageComponent implements OnInit {
       this.libro.data = data;
     });
   }
+
   // FILTER
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.libro.filter = filterValue.trim().toLowerCase();
   }
+
   // EDIT
   openEditModal(spec: Libro): void {
     const dialogRef = this.dialog.open(UpdateBookComponent, {
@@ -45,7 +54,7 @@ export class HomePageComponent implements OnInit {
       }
     });
   }
-  
+
   aggiornaLibro(libroAgg: Libro): void {
     this.jsonServ.putLibro(libroAgg).subscribe((res) => {
       const index = this.libro.data.findIndex(
@@ -59,18 +68,19 @@ export class HomePageComponent implements OnInit {
       }
     });
   }
+
   // DELETE
   deleteBook(bookId: string): void {
     const dialogRef = this.dialog.open(DeleteBookComponent, {
       width: '300px',
-      data: { bookId }
+      data: { bookId },
     });
-  
-    dialogRef.afterClosed().subscribe(result => {
+
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         // Se l'utente conferma, elimina il libro
         this.jsonServ.deleteLibro(bookId).subscribe(() => {
-          const index = this.libro.data.findIndex(book => book.id === bookId);
+          const index = this.libro.data.findIndex((book) => book.id === bookId);
           if (index !== -1) {
             this.libro.data.splice(index, 1); // Rimuovi il libro dalla lista
             this.libro._updateChangeSubscription(); // Rinfresca la tabella
@@ -79,5 +89,4 @@ export class HomePageComponent implements OnInit {
       }
     });
   }
-
 }

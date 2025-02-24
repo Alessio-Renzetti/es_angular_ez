@@ -1,13 +1,6 @@
 {
   "libri": [
     {
-      "titolo": "Il Nome della Rosa",
-      "autore": "Umberto Eco",
-      "genere": "Storico",
-      "data_pub": "1980-01-01",
-      "id": "dc23"
-    },
-    {
       "titolo": "1984",
       "autore": "George Orwell",
       "genere": "Distopico",
@@ -41,6 +34,46 @@
       "autore": "Luigi Pirandello",
       "genere": "Romanzo",
       "data_pub": "1926-03-16"
+    },
+    {
+      "id": "c96d",
+      "titolo": "nuovo libro",
+      "autore": "Gabriele",
+      "genere": "Romanzo",
+      "data_pub": "2025-02-16"
+    },
+    {
+      "id": "79bc",
+      "titolo": "Gabbo",
+      "autore": "Gabo",
+      "genere": "Storico",
+      "data_pub": "2025-02-24"
+    },
+    {
+      "id": "70ae",
+      "titolo": "nuovo libro",
+      "autore": "pippo",
+      "genere": "Storico",
+      "data_pub": "2025-02-24"
+    },
+    {
+      "id": "e132",
+      "titolo": "pippo",
+      "autore": "pippo",
+      "genere": null,
+      "data_pub": null
     }
+  ],
+  "generi": [
+    "Distopico",
+    "Storico",
+    "Narrativa",
+    "Romanzo",
+    "Fantasy",
+    "Horror",
+    "Giallo",
+    "Science-fiction",
+    "Commedia",
+    "Biografia"
   ]
 }

@@ -9,5 +9,5 @@ export const routes: Routes = [
   { path: 'AddBook', component: AddBookComponent },
   { path: 'UpdateBook', component: UpdateBookComponent },
   { path: 'DeleteBook', component: DeleteBookComponent },
-  { path: '**', redirectTo: 'Home' },
+  { path: '**', redirectTo: 'Home' }, // wildcard
 ];

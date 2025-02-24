@@ -1,11 +1,11 @@
 <style>
-    mat-dialog-content{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color:  #e1b382;
-    }
+  mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #e1b382;
+  }
 </style>
 <h1 mat-dialog-title>Edit Book</h1>
 <div mat-dialog-content>
@@ -21,16 +21,7 @@
     <mat-form-field>
       <mat-label>Genere</mat-label>
       <mat-select name="genere" formControlName="genere">
-        <mat-option value="Distopico">Distopico</mat-option>
-        <mat-option value="Storico">Storico</mat-option>
-        <mat-option value="Narrativa">Narrativa</mat-option>
-        <mat-option value="Romanzo">Romanzo</mat-option>
-        <mat-option value="Fantasy">Fantasy</mat-option>
-        <mat-option value="Horror">Horror</mat-option>
-        <mat-option value="Giallo">Giallo</mat-option>
-        <mat-option value="Science-fiction">Science-fiction</mat-option>
-        <mat-option value="Commedia">Commedia</mat-option>
-        <mat-option value="Biografia">Biografia</mat-option>
+        <mat-option [value]="g" *ngFor="let g of genere">{{ g }}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>

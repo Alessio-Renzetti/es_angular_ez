@@ -16,12 +16,14 @@ import {
 } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Libro } from '../../service/json-service.service';
+import { JsonServiceService, Libro } from '../../service/json-service.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-update-book',
   providers: [provideNativeDateAdapter()],
   imports: [
+    CommonModule,
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
@@ -37,13 +39,18 @@ import { Libro } from '../../service/json-service.service';
 })
 export class UpdateBookComponent implements OnInit {
   editForm!: FormGroup;
-
+  genere: string[] = [];
   constructor(
     public dialogRef: MatDialogRef<UpdateBookComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Libro
+    @Inject(MAT_DIALOG_DATA) public data: Libro,
+    private jsonService: JsonServiceService
   ) {}
 
   ngOnInit(): void {
+    this.jsonService.getGeneri().subscribe((res) => {
+      this.genere = res;
+    });
+
     this.editForm = new FormGroup({
       titolo: new FormControl(this.data.titolo, Validators.required),
       autore: new FormControl(this.data.autore, Validators.required),
@@ -55,6 +62,7 @@ export class UpdateBookComponent implements OnInit {
       ),
     });
   }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -62,16 +70,15 @@ export class UpdateBookComponent implements OnInit {
   save(): void {
     if (this.editForm.valid) {
       let formData = { ...this.editForm.value };
-  
+
       if (formData.data_pub) {
         formData.data_pub = new Date(formData.data_pub)
           .toISOString()
           .split('T')[0];
       }
-  
-  
+
       this.data = { ...this.data, ...formData };
-  
+
       this.dialogRef.close(this.data);
     } else {
       console.error('Form is invalid');
